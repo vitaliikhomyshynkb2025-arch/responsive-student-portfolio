@@ -1,0 +1,64 @@
+/* 1. Токени й базові стилі (селектори тегів). */
+:root {
+  --paper: #f5f3ed;
+  --ink: #173c34;
+  --muted: #52665d;
+  --line: #d6ddd4;
+  --accent: #c1e78b;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Trebuchet MS", sans-serif;
+  line-height: 1.65;
+}
+h1, h2, h3, p, ul { margin: 0; }
+h1, h2 { font-family: Georgia, serif; }
+h1 { max-width: 18ch; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.08; font-weight: 400; }
+h2 { margin-bottom: 1.25rem; font-size: 1.65rem; line-height: 1.3; font-weight: 400; }
+h3 { margin-bottom: .5rem; font-size: 1rem; line-height: 1.5; }
+p + p, p + ul { margin-top: .75rem; }
+ul { padding-left: 1.25rem; }
+li + li { margin-top: .5rem; }
+a { color: inherit; text-underline-offset: .25em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 3px solid #7b9a42; outline-offset: 5px; border-radius: 2px; }
+/* 2. Header: клас, Flexbox і блокова модель. */
+.profile {
+  max-width: 1120px;
+  margin: 2.5rem auto 0;
+  padding: 3rem;
+  border: 1px solid var(--ink);
+  border-radius: 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+.profile-role { margin-top: 1.25rem; color: #d5e5cd; font-size: 1.125rem; }
+nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 2rem; font-size: .875rem; }
+nav a { padding: .35rem 0; text-decoration: none; border-bottom: 1px solid #7a9488; }
+nav a:hover { color: var(--accent); border-color: var(--accent); }
+/* 3. Grid: дві колонки на широкому екрані. */
+.resume-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem; max-width: 1120px; margin: 1.5rem auto; }
+.resume-section { min-width: 0; padding: 2rem; border: 1px solid var(--line); border-radius: 1.25rem; background: #fffefa; scroll-margin-top: 1rem; }
+.section-number { font: .75rem "Trebuchet MS", sans-serif; color: var(--muted); vertical-align: middle; }
+/* Селектор ID: особливий фон вступного розділу. */
+#about { background: #e7eedf; }
+#resources { grid-column: 1 / -1; }
+article + article { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.skill-item { padding-left: .25rem; }
+/* Селектор атрибута: зовнішні посилання. */
+a[href^="https://"] { text-decoration-color: #72945a; }
+section:target { outline: 2px solid #7b9a42; outline-offset: 3px; }
+footer { display: flex; justify-content: space-between; gap: 1rem; max-width: 1120px; margin: 0 auto 2.5rem; padding: 1rem .25rem; color: var(--muted); font-size: .875rem; }
+/* 4. Адаптивність: змінюємо макет, а не лише розмір тексту. */
+@media (max-width: 767px) {
+  .profile { margin: 1rem 1rem 0; padding: 2rem 1.5rem; }
+  .resume-grid { grid-template-columns: 1fr; margin: 1rem; gap: 1rem; }
+  .resume-section { padding: 1.5rem; }
+  footer { flex-direction: column; margin: 0 1rem 1rem; }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .profile, .resume-grid, footer { margin-left: 2rem; margin-right: 2rem; }
+}
